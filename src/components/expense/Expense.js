@@ -1,6 +1,7 @@
+import { withRouter } from "/src/withRouterCompat";
 import React, { Component } from "react";
-import { withRouter } from "react-router";
-import { withStyles } from "material-ui/styles";
+import {  } from "react-router-dom";
+import { withStyles } from "@mui/styles";
 import CustomTabs from "../controls/Tabs";
 import TabContainer from "../controls/TabContainer";
 import ExpenseTab from "./ExpenseTab";

@@ -1,8 +1,8 @@
 import React from "react";
-import { withStyles } from "material-ui/styles";
-import Toolbar from "material-ui/Toolbar";
-import Typography from "material-ui/Typography";
-import { TableCell } from "material-ui/Table";
+import { withStyles } from "@mui/styles";
+import { Toolbar } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { TableCell } from "@mui/material";
 import TablePaginationActions from "./TablePaginationActions";
 
 export const styles = theme => ({
@@ -29,13 +29,13 @@ export const styles = theme => ({
     flexShrink: 0
   },
   selectRoot: {
-    marginRight: theme.spacing.unit * 4,
-    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing(4),
+    marginLeft: theme.spacing(1),
     color: theme.palette.text.secondary
   },
   select: {
-    paddingLeft: theme.spacing.unit,
-    paddingRight: theme.spacing.unit * 2
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(2)
   },
   selectIcon: {
     top: 1
@@ -43,7 +43,7 @@ export const styles = theme => ({
   actions: {
     flexShrink: 0,
     color: theme.palette.text.secondary,
-    marginLeft: theme.spacing.unit * 2.5
+    marginLeft: theme.spacing(2.5)
   }
 });
 

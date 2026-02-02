@@ -1,13 +1,12 @@
 import React from "react";
-import MomentUtils from "material-ui-pickers/utils/moment-utils";
-import MuiPickersUtilsProvider from "material-ui-pickers/utils/MuiPickersUtilsProvider";
-import DatePicker from "material-ui-pickers/DatePicker";
-import KeyboardArrowLeft from "material-ui-icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "material-ui-icons/KeyboardArrowRight";
-import DateRange from "material-ui-icons/DateRange";
-import { withStyles } from "material-ui";
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
+import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
+import DateRange from "@mui/icons-material/DateRange";
+import { withStyles } from "@mui/styles";
 
-// eslint-disable-next-line
 const styles = theme => ({
   textField: {
     [theme.breakpoints.up("xs")]: {
@@ -28,41 +27,42 @@ const styles = theme => ({
 });
 
 const CustomDatePicker = props => {
-  const { handleDateChange, classes, name, ...rest } = props;
+  const { handleDateChange, classes, name, value, label, ...rest } = props;
 
   const onDateChange = date => {
-    const target = {};
-    target.name = name;
-    // eslint-disable-next-line  no-underscore-dangle
-    target.value = date._d;
+    if (!date) return;
+    const target = {
+      name: name,
+      value: date.toDate() // adapter-moment provides moment object, toDate() returns JS Date
+    };
     handleDateChange({ target });
   };
 
   return (
-    <MuiPickersUtilsProvider utils={MomentUtils}>
+    <LocalizationProvider dateAdapter={AdapterMoment}>
       <DatePicker
-        placeholder="dd/mm/yyyy"
+        label={label}
+        value={value ? value : null}
         format="DD/MM/YYYY"
-        keyboard
-        mask={value =>
-          value
-            ? [/\d/, /\d/, "/", /\d/, /\d/, "/", /\d/, /\d/, /\d/, /\d/]
-            : []
-        }
-        leftArrowIcon={<KeyboardArrowLeft />}
-        rightArrowIcon={<KeyboardArrowRight />}
-        InputLabelProps={{
-          shrink: true,
-          className: classes.textFieldFormLabel
-        }}
-        keyboardIcon={<DateRange />}
-        {...rest}
-        className={classes.textField}
         onChange={onDateChange}
-        disableOpenOnEnter
-        animateYearScrolling={false}
+        slots={{
+          openPickerIcon: DateRange,
+          leftArrowIcon: KeyboardArrowLeft,
+          rightArrowIcon: KeyboardArrowRight,
+        }}
+        slotProps={{
+          textField: {
+            className: classes.textField,
+            placeholder: "dd/mm/yyyy",
+            InputLabelProps: {
+              shrink: true,
+              className: classes.textFieldFormLabel
+            }
+          }
+        }}
+        {...rest}
       />
-    </MuiPickersUtilsProvider>
+    </LocalizationProvider>
   );
 };
 

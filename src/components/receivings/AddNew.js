@@ -1,7 +1,8 @@
+import { withRouter } from "/src/withRouterCompat";
 import React, { Component } from "react";
 import * as equal from "fast-deep-equal";
-import { withRouter } from "react-router";
-import { withStyles } from "material-ui/styles";
+import {  } from "react-router-dom";
+import { withStyles } from "@mui/styles";
 import Container from "../controls/Container";
 import Form from "../controls/Form";
 import Dropdown from "../controls/dropdown/Dropdown";

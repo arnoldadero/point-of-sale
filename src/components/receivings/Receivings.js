@@ -1,8 +1,9 @@
+import { withRouter } from "/src/withRouterCompat";
 import React, { Component } from "react";
 import * as moment from "moment";
-import Button from "material-ui/Button";
-import { withRouter } from "react-router";
-import { withStyles } from "material-ui/styles";
+import Button from "@mui/material/Button";
+import {  } from "react-router-dom";
+import { withStyles } from "@mui/styles";
 import Container from "../controls/Container";
 import Searchbox from "../controls/Searchbox";
 import Message from "../controls/Message";
@@ -13,10 +14,10 @@ import YesNo from "../controls/dialog/YesNo";
 
 const styles = theme => ({
   leftIcon: {
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing(1)
   },
   button: {
-    margin: theme.spacing.unit
+    margin: theme.spacing(1)
   },
   iconSmall: {
     fontSize: 20

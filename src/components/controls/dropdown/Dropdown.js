@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "material-ui/styles";
-import "react-select/dist/react-select.css";
+import { withStyles } from "@mui/styles";
+// // // // // import "react-select/dist/react-select.css"; // MUI v6 / react-select v2+ handle this differently // MUI v6 / react-select v2+ handle this differently // MUI v6 / react-select v2+ handle this differently // MUI v6 / react-select v2+ handle this differently // MUI v6 / react-select v2+ handle this differently
 import CustomTextField from "../textfields/CustomTextField";
 import SelectWrapped from "./SelectWrapped";
 import styles from "./styles";

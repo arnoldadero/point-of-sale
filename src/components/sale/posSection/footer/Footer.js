@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withStyles, Button } from "material-ui";
+import { withStyles } from "@mui/styles";
+import { Button } from "@mui/material";
 import NormalSale from "../sale/NormalSale";
 
 const styles = () => ({

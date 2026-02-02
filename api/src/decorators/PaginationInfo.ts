@@ -1,6 +1,6 @@
 import { createParamDecorator } from "routing-controllers";
 
-export interface IPaginationQueryParam {
+export class IPaginationQueryParam {
   perPage: number;
   pageNo: number;
 }

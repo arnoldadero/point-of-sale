@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { withStyles } from "material-ui";
-import AppBar from "material-ui/AppBar";
-import Tabs, { Tab } from "material-ui/Tabs";
+import { withStyles } from "@mui/styles";
+import AppBar from "@mui/material/AppBar";
+import { Tabs,  Tab } from "@mui/material";
 
 // eslint-disable-next-line
 const styles = theme => ({

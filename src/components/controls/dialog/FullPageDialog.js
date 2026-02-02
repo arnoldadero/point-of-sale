@@ -1,11 +1,11 @@
 import React from "react";
-import { withStyles } from "material-ui/styles";
-import Dialog from "material-ui/Dialog";
-import AppBar from "material-ui/AppBar";
-import Toolbar from "material-ui/Toolbar";
-import IconButton from "material-ui/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Slide from "material-ui/transitions/Slide";
+import { withStyles } from "@mui/styles";
+import { Dialog } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import { Toolbar } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import Slide from "@mui/material/Slide";
 
 const styles = {
   appBar: {

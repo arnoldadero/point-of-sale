@@ -1,6 +1,7 @@
+import { withRouter } from "/src/withRouterCompat";
 import React, { Component } from "react";
 import * as equal from "fast-deep-equal";
-import { withRouter } from "react-router";
+import {  } from "react-router-dom";
 import Container from "../controls/Container";
 import Form from "../controls/Form";
 import CustomTextField from "../controls/textfields/CustomTextField";

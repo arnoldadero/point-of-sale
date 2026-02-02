@@ -27,7 +27,7 @@ export class User {
   password: string;
 
   @IsEnum(Role)
-  @Column()
+  @Column({ type: "int" })
   role: Role;
 
   @IsNotEmpty()

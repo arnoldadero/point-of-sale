@@ -1,25 +1,24 @@
-import thunk from "redux-thunk";
-import { createStore, applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { createLogger } from "redux-logger";
 import reducers from "./reducers";
 
 const persistedState = sessionStorage.getItem("appstate")
   ? JSON.parse(sessionStorage.getItem("appstate"))
-  : {};
+  : undefined;
 
-const configureStore = () => {
-  const middlewares = [];
-
-  middlewares.push(thunk);
-
-  if (process.env.REACT_APP_ACC_BOOK !== "production") {
-    middlewares.push(createLogger());
-  }
-
-  return createStore(reducers, persistedState, applyMiddleware(...middlewares));
-};
-
-const store = configureStore();
+const store = configureStore({
+  reducer: reducers,
+  preloadedState: persistedState,
+  middleware: (getDefaultMiddleware) => {
+    const middleware = getDefaultMiddleware({
+      serializableCheck: false, // For legacy compatibility with existing state
+    });
+    if (import.meta.env.MODE !== "production") {
+      middleware.push(createLogger());
+    }
+    return middleware;
+  },
+});
 
 store.subscribe(() => {
   sessionStorage.setItem("appstate", JSON.stringify(store.getState()));

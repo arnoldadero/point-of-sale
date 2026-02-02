@@ -28,11 +28,10 @@ export enum TransactionStatus {
 export class TransactionHeader extends Base {
   @PrimaryColumn() id: number;
 
-  @OneToMany(
-    type => TransactionDetails,
-    datasource => datasource.transactionHeader,
-    { onUpdate: "CASCADE", onDelete: "RESTRICT" }
-  )
+  @OneToMany("TransactionDetails" as any, "transactionHeader", {
+    onUpdate: "CASCADE",
+    onDelete: "RESTRICT",
+  })
   transactionDetails: TransactionDetails[];
 
   @Column({ type: "float" })
@@ -59,9 +58,9 @@ export class TransactionHeader extends Base {
   @Column({ type: "float" })
   amountPaid: number;
 
-  @Column() salesType: SalesType;
+  @Column({ type: "int" }) salesType: SalesType;
 
-  @Column() transactionStatus: TransactionStatus;
+  @Column({ type: "int" }) transactionStatus: TransactionStatus;
 
   @Column({ nullable: true })
   comments: string;

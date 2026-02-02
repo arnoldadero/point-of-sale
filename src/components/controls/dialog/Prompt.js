@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "material-ui/Button";
-import Dialog, {
+import Button from "@mui/material/Button";
+import { Dialog, 
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle
-} from "material-ui/Dialog";
+} from "@mui/material";
 
 const Prompt = props => (
   <Dialog

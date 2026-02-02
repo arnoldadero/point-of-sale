@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router";
-import { withStyles } from "material-ui/styles";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import { withStyles } from "@mui/styles";
 import Header from "./header/Header";
 import Sidebar from "./sidebar/Sidebar";
 import MainContainer from "../controls/MainContainer";
@@ -18,40 +18,32 @@ const styles = theme => ({
   }
 });
 
-class Home extends Component {
-  state = {
-    mobileOpen: false
+const Home = (props) => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const { classes } = props;
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  handleDrawerToggle = () => {
-    this.setState({ mobileOpen: !this.state.mobileOpen });
-  };
+  const shouldRenderMobileMenu = location.pathname === "/sale";
 
-  render() {
-    const { classes } = this.props;
-    const { mobileOpen } = this.state;
+  return (
+    <div className={classes.root}>
+      <Header
+        shouldRenderMobileMenu={shouldRenderMobileMenu}
+        handleDrawerToggle={handleDrawerToggle}
+      />
+      <Sidebar
+        mobileOpen={mobileOpen}
+        handleDrawerToggle={handleDrawerToggle}
+      />
+      <MainContainer shouldRenderMobileMenu={shouldRenderMobileMenu}>
+        <Routes />
+      </MainContainer>
+    </div>
+  );
+};
 
-    const shouldRenderMobileMenu =
-      this.props.history.location.pathname === "/sale";
-
-    return (
-      <div className={classes.root}>
-        <Header
-          shouldRenderMobileMenu={shouldRenderMobileMenu}
-          handleDrawerToggle={this.handleDrawerToggle}
-        />
-        <Sidebar
-          mobileOpen={mobileOpen}
-          handleDrawerToggle={this.handleDrawerToggle}
-        />
-        <MainContainer shouldRenderMobileMenu={shouldRenderMobileMenu}>
-          <Routes />
-        </MainContainer>
-      </div>
-    );
-  }
-}
-
-const component = withStyles(styles, { withTheme: true })(Home);
-
-export default withRouter(component);
+export default withStyles(styles, { withTheme: true })(Home);

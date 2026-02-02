@@ -1,10 +1,11 @@
+import { withRouter } from "/src/withRouterCompat";
 import React, { Component } from "react";
-import { withStyles } from "material-ui/styles";
-import Paper from "material-ui/Paper";
-import TextField from "material-ui/TextField";
-import { CircularProgress } from "material-ui/Progress";
-import Button from "material-ui/Button";
-import { withRouter } from "react-router";
+import { withStyles } from "@mui/styles";
+import Paper from "@mui/material/Paper";
+import TextField from "@mui/material/TextField";
+import CircularProgress from "@mui/material/CircularProgress";
+import Button from "@mui/material/Button";
+import { } from "react-router-dom";
 import { connect } from "react-redux";
 import ErrorMessage from "../controls/messages/ErrorMessage";
 import { loginUser } from "../../actions/auth";

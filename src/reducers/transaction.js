@@ -9,6 +9,6 @@ export default function transaction(state = {}, action = {}) {
       return {};
 
     default:
-      return {};
+      return state;
   }
 }

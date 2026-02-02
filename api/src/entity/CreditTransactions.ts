@@ -55,7 +55,7 @@ export class CreditTransactions extends Base {
   totalDebt: number;
 
   @IsEnum(CreditTransactionsType)
-  @Column()
+  @Column({ type: "int" })
   type: CreditTransactionsType;
 
   @IsNotEmpty()

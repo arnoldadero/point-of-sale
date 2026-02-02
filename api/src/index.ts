@@ -61,6 +61,12 @@ async function createServer(): Promise<any> {
 
     const port = process.env.PORT || 3500;
 
+    app.get('/', (_req, res) => {
+      res.send('Welcome to Point of Sale API');
+    });
+
+    app.get('/favicon.ico', (_req, res) => res.sendStatus(204));
+
     app.listen(port, () => {
       console.log(`server started at ${port}`);
     });

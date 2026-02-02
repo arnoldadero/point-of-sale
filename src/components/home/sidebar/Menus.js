@@ -1,15 +1,16 @@
+import { withRouter } from "/src/withRouterCompat";
 import React, { Component, Fragment } from "react";
-import List from "material-ui/List";
-import { withRouter } from "react-router";
-import ListSubheader from "material-ui/List/ListSubheader";
-import ViewModule from "material-ui-icons/ViewModule";
-import GroupAdd from "material-ui-icons/GroupAdd";
-import SupervisorAccount from "material-ui-icons/SupervisorAccount";
-import NoteAdd from "material-ui-icons/NoteAdd";
-import LocalGroceryStore from "material-ui-icons/LocalGroceryStore";
-import Assessment from "material-ui-icons/Assessment";
-import LocalAtm from "material-ui-icons/LocalAtm";
-import More from "material-ui-icons/More";
+import { List } from "@mui/material";
+import {  } from "react-router-dom";
+import ListSubheader from "@mui/material/ListSubheader";
+import ViewModule from "@mui/icons-material/ViewModule";
+import GroupAdd from "@mui/icons-material/GroupAdd";
+import SupervisorAccount from "@mui/icons-material/SupervisorAccount";
+import NoteAdd from "@mui/icons-material/NoteAdd";
+import LocalGroceryStore from "@mui/icons-material/LocalGroceryStore";
+import Assessment from "@mui/icons-material/Assessment";
+import LocalAtm from "@mui/icons-material/LocalAtm";
+import More from "@mui/icons-material/More";
 import SidebarMenu from "../../controls/SidebarMenu";
 
 class Menus extends Component {
