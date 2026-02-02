@@ -7,7 +7,8 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
-import { Table, 
+import {
+  Table,
   TableBody,
   TableCell,
   TableHead,
@@ -205,13 +206,13 @@ class ApiAutoFetchDatagrid extends Component {
     return (
       <TableCell>
         {this.props.actions.includes("edit") && (
-          <IconButton>
-            <EditIcon onClick={() => this.props.onEdit(row)} />
+          <IconButton onClick={() => this.props.onEdit(row)}>
+            <EditIcon />
           </IconButton>
         )}
         {this.props.actions.includes("del") && (
-          <IconButton>
-            <DeleteIcon onClick={() => this.props.onDelete(row)} />
+          <IconButton onClick={() => this.props.onDelete(row)}>
+            <DeleteIcon />
           </IconButton>
         )}
       </TableCell>
