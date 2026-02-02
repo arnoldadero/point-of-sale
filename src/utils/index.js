@@ -3,7 +3,7 @@ import { withStyles } from "@mui/styles";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import axios from "axios";
-import * as moment from "moment";
+import moment from "moment";
 
 const styled = Component => (style, options) => {
   function StyledComponent(props) {

@@ -1,8 +1,8 @@
 import { withRouter } from "/src/withRouterCompat";
 import React, { Component } from "react";
-import * as moment from "moment";
+import moment from "moment";
 import Button from "@mui/material/Button";
-import {  } from "react-router-dom";
+import { } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import Container from "../controls/Container";
 import Searchbox from "../controls/Searchbox";

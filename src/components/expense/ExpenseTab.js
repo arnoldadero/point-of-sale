@@ -1,8 +1,8 @@
 import { withRouter } from "/src/withRouterCompat";
 import React, { Component } from "react";
-import * as moment from "moment";
+import moment from "moment";
 import Button from "@mui/material/Button";
-import {  } from "react-router-dom";
+import { } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import Searchbox from "../controls/Searchbox";
 import api from "../../api";
@@ -182,4 +182,4 @@ class ExpenseTab extends Component {
   }
 }
 
-export default withRouter(withStyles(styles, { withTheme: true })(ExpenseTab));
+export default withRouter(withStyles(styles)(ExpenseTab));
