@@ -23,9 +23,8 @@ class TaxDiscountRow extends Component {
   render() {
     const { cartArray, summary } = this.props;
 
-    const discountText = `${summary.discountOnItems} (${
-      summary.discountOnTotal
-    })`;
+    const discountText = `${summary.discountOnItems} (${summary.discountOnTotal
+      })`;
     const { taxAmount, tax } = summary;
 
     const { showDiscount, showTax } = this.state;
@@ -40,15 +39,15 @@ class TaxDiscountRow extends Component {
         />
         <TaxPopup tax={summary.tax} open={showTax} close={this.toggleTax} />
         <FooterTableRow>
-          <FooterTableCell numeric style={{ width: "150px" }}>
+          <FooterTableCell align="right" style={{ width: "150px" }}>
             <LinkButton text="Discount" onClick={this.toggleDiscount} />
           </FooterTableCell>
-          <FooterTableCell numeric>{discountText}</FooterTableCell>
-          <FooterTableCell numeric />
+          <FooterTableCell align="right">{discountText}</FooterTableCell>
+          <FooterTableCell align="right" />
           <FooterTableCell style={{ paddingLeft: "15px" }}>
             <LinkButton text={`Tax (${tax}%)`} onClick={this.toggleTax} />
           </FooterTableCell>
-          <FooterTableCell numeric>{taxAmount}</FooterTableCell>
+          <FooterTableCell align="right">{taxAmount}</FooterTableCell>
         </FooterTableRow>
       </Fragment>
     );

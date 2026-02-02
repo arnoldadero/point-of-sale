@@ -4,14 +4,14 @@ import FooterTableRow from "./FooterTableRow";
 
 const TotalRow = ({ totalQtyText, totalPrice }) => (
   <FooterTableRow style={{ paddingTop: "20px" }}>
-    <FooterTableCell numeric>Total Items</FooterTableCell>
-    <FooterTableCell numeric>{totalQtyText}</FooterTableCell>
-    <FooterTableCell numeric />
+    <FooterTableCell align="right">Total Items</FooterTableCell>
+    <FooterTableCell align="right">{totalQtyText}</FooterTableCell>
+    <FooterTableCell align="right" />
     <FooterTableCell style={{ paddingLeft: "15px" }}>
       Total{" "}
       <span style={{ fontWeight: "400", fontSize: "11px" }}>(discounted)</span>
     </FooterTableCell>
-    <FooterTableCell numeric>{totalPrice}</FooterTableCell>
+    <FooterTableCell align="right">{totalPrice}</FooterTableCell>
   </FooterTableRow>
 );
 

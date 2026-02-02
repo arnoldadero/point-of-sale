@@ -17,10 +17,10 @@ const CartBody = ({ cartArray, onDeleteCartItem, onProductItemSelect }) => {
           <CustomTableCell style={{ width: 150 }}>
             <LightButton text={n.name} onClick={() => onProductItemSelect(n)} />
           </CustomTableCell>
-          <CustomTableCell numeric>{n.sellingPrice}</CustomTableCell>
-          <CustomTableCell numeric>{n.qty}</CustomTableCell>
-          <CustomTableCell numeric>{n.totalPrice}</CustomTableCell>
-          <CustomTableCell numeric style={{ width: 30, paddingRight: "5px" }}>
+          <CustomTableCell align="right">{n.sellingPrice}</CustomTableCell>
+          <CustomTableCell align="right">{n.qty}</CustomTableCell>
+          <CustomTableCell align="right">{n.totalPrice}</CustomTableCell>
+          <CustomTableCell align="right" style={{ width: 30, paddingRight: "5px" }}>
             <DeleteButton onDelete={() => onDeleteCartItem(n)} />
           </CustomTableCell>
         </TableRow>

@@ -11,13 +11,13 @@ const styles = () => ({
 
 const TotalBillRow = ({ classes, netTotal }) => (
   <FooterTableRow className={classes.root}>
-    <FooterTableCell numeric style={{ width: "150px" }} />
-    <FooterTableCell numeric />
+    <FooterTableCell align="right" style={{ width: "150px" }} />
+    <FooterTableCell align="right" />
     <FooterTableCell />
     <FooterTableCell style={{ paddingLeft: "15px" }}>
       Net bill amount
     </FooterTableCell>
-    <FooterTableCell numeric>{netTotal}</FooterTableCell>
+    <FooterTableCell align="right">{netTotal}</FooterTableCell>
   </FooterTableRow>
 );
 
