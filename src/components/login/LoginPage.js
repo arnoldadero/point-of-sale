@@ -1,71 +1,42 @@
-import { withRouter } from "/src/withRouterCompat";
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { withStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import CircularProgress from "@mui/material/CircularProgress";
 import Button from "@mui/material/Button";
-import { } from "react-router-dom";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ErrorMessage from "../controls/messages/ErrorMessage";
-import { loginUser } from "../../actions/auth";
+import { loginUser as loginAction } from "../../actions/auth";
 
 import styles from "./styles";
 
-class LoginPage extends Component {
-  state = {
-    data: {
-      username: "",
-      password: ""
-    },
-    loading: false,
-    errors: {}
-  };
+const LoginPage = ({ classes }) => {
+  const [data, setData] = useState({
+    username: "",
+    password: ""
+  });
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  componentDidMount() {
-    if (this.props.isLoggedIn) {
-      this.props.history.push("/home");
-    } else {
-      this.props.history.push("/");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const usernameRef = useRef(null);
+
+  const isLoggedIn = useSelector(state =>
+    state.auth !== undefined ? !!state.auth.tokens : false
+  );
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/home");
     }
-  }
+  }, [isLoggedIn, navigate]);
 
-  hasErrors = () =>
-    this.state.errors.global && this.state.errors.global.length > 0;
+  const hasErrors = () =>
+    errors.global && errors.global.length > 0;
 
-  onSubmit = async e => {
-    e.preventDefault();
-
-    const errors = this.validate(this.state.data);
-    this.setState({ errors });
-
-    if (Object.keys(errors).length !== 0) {
-      return;
-    }
-
-    this.setState({ loading: true });
-
-    try {
-      await this.props.loginUser({ ...this.state.data });
-      this.props.history.push("/");
-    } catch (error) {
-      this.setState({
-        errors: { global: error.message },
-        data: { username: "", password: "" },
-        loading: false
-      });
-
-      if (this.usernameRef) this.usernameRef.focus();
-    }
-  };
-
-  onChange = e => {
-    this.setState({
-      data: { ...this.state.data, [e.target.name]: e.target.value }
-    });
-  };
-
-  validate = data => {
+  const validate = (data) => {
     const errors = {};
 
     if (!data.username || data.username.length === 0)
@@ -77,87 +48,96 @@ class LoginPage extends Component {
     return errors;
   };
 
-  render() {
-    const { classes } = this.props;
-    const { loading, data, errors } = this.state;
+  const onSubmit = async e => {
+    e.preventDefault();
 
-    return (
-      <div className={classes.root}>
-        <div className={classes.loginContainer}>
-          <Paper className={classes.paper}>
-            <form onSubmit={this.onSubmit}>
-              <div>
-                <span>Welcome to Easy POS</span>
-              </div>
+    const validationErrors = validate(data);
+    setErrors(validationErrors);
 
-              <ErrorMessage
-                show={this.hasErrors()}
-                className={classes.errorMessage}
-                message={errors.global}
-              />
+    if (Object.keys(validationErrors).length !== 0) {
+      return;
+    }
 
-              <TextField
-                inputRef={input => {
-                  this.usernameRef = input;
-                }}
-                error={!!errors.username}
-                name="username"
-                value={data.username}
-                fullWidth
-                label="Username"
-                placeholder="Username"
-                margin="normal"
-                onChange={this.onChange}
-              />
-              <TextField
-                error={!!errors.password}
-                name="password"
-                value={data.password}
-                fullWidth
-                label="Password"
-                placeholder="Password"
-                type="password"
-                margin="normal"
-                onChange={this.onChange}
-              />
+    setLoading(true);
 
-              <div className={classes.wrapper}>
-                <Button
-                  type="submit"
-                  variant="raised"
-                  color="primary"
-                  disabled={loading}
-                >
-                  Login
-                </Button>
-                {loading && (
-                  <CircularProgress
-                    size={24}
-                    className={classes.buttonProgress}
-                  />
-                )}
-              </div>
-            </form>
-          </Paper>
-        </div>
-      </div>
-    );
-  }
-}
+    try {
+      await dispatch(loginAction({ ...data }));
+      navigate("/home");
+    } catch (error) {
+      setErrors({ global: error.message });
+      setData({ username: "", password: "" });
+      setLoading(false);
 
-function mapStateToProps(state) {
-  const isLoggedIn = state.auth !== undefined ? !!state.auth.tokens : false;
-
-  return {
-    isLoggedIn
+      if (usernameRef.current) usernameRef.current.focus();
+    }
   };
-}
 
-const component = withStyles(styles, { withTheme: true })(LoginPage);
+  const onChange = e => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value
+    });
+  };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    { loginUser }
-  )(component)
-);
+  return (
+    <div className={classes.root}>
+      <div className={classes.loginContainer}>
+        <Paper className={classes.paper}>
+          <form onSubmit={onSubmit}>
+            <div>
+              <span>Welcome to Easy POS</span>
+            </div>
+
+            <ErrorMessage
+              show={hasErrors()}
+              className={classes.errorMessage}
+              message={errors.global}
+            />
+
+            <TextField
+              inputRef={usernameRef}
+              error={!!errors.username}
+              name="username"
+              value={data.username}
+              fullWidth
+              label="Username"
+              placeholder="Username"
+              margin="normal"
+              onChange={onChange}
+            />
+            <TextField
+              error={!!errors.password}
+              name="password"
+              value={data.password}
+              fullWidth
+              label="Password"
+              placeholder="Password"
+              type="password"
+              margin="normal"
+              onChange={onChange}
+            />
+
+            <div className={classes.wrapper}>
+              <Button
+                type="submit"
+                variant="raised"
+                color="primary"
+                disabled={loading}
+              >
+                Login
+              </Button>
+              {loading && (
+                <CircularProgress
+                  size={24}
+                  className={classes.buttonProgress}
+                />
+              )}
+            </div>
+          </form>
+        </Paper>
+      </div>
+    </div>
+  );
+};
+
+export default withStyles(styles, { withTheme: true })(LoginPage);
