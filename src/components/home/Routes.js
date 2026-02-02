@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes as Switch, Route } from "react-router-dom";
-import customer from "../customers";
-import expense from "../expense";
-import receivings from "../receivings";
-import product from "../products";
-import vendor from "../vendor";
-import sale from "../sale";
+import Customer from "../customers";
+import Expense from "../expense";
+import Receivings from "../receivings";
+import Product from "../products";
+import Vendor from "../vendor";
+import Sale from "../sale";
 import NotFound from "../notFound/NotFound";
 
 const Routes = () => (
@@ -13,52 +13,52 @@ const Routes = () => (
     <Route path="/" element={<div />} />
 
     {/* Sale */}
-    <Route path="/sale" element={<sale />} />
+    <Route path="/sale" element={<Sale />} />
 
     {/* Receivings */}
-    <Route path="/receivings" element={<receivings.Receivings />} />
-    <Route path="/receivings/new" element={<receivings.AddNew />} />
+    <Route path="/receivings" element={<Receivings.Receivings />} />
+    <Route path="/receivings/new" element={<Receivings.AddNew />} />
 
     {/* Vendor */}
-    <Route path="/vendors" element={<vendor.Vendors />} />
-    <Route path="/vendors/new" element={<vendor.AddNew />} />
-    <Route path="/vendors/edit/:id" element={<vendor.AddNew />} />
+    <Route path="/vendors" element={<Vendor.Vendors />} />
+    <Route path="/vendors/new" element={<Vendor.AddNew />} />
+    <Route path="/vendors/edit/:id" element={<Vendor.AddNew />} />
 
     {/* Customer */}
-    <Route path="/customers" element={<customer.Customers />} />
-    <Route path="/customers/new" element={<customer.AddNew />} />
-    <Route path="/customers/edit/:id" element={<customer.AddNew />} />
+    <Route path="/customers" element={<Customer.Customers />} />
+    <Route path="/customers/new" element={<Customer.AddNew />} />
+    <Route path="/customers/edit/:id" element={<Customer.AddNew />} />
 
     {/* Expense */}
-    <Route path="/expense" element={<expense.Expense />} />
-    <Route path="/expense/new" element={<expense.AddNewExpense />} />
-    <Route path="/expense/edit/:id" element={<expense.AddNewExpense />} />
+    <Route path="/expense" element={<Expense.Expense />} />
+    <Route path="/expense/new" element={<Expense.AddNewExpense />} />
+    <Route path="/expense/edit/:id" element={<Expense.AddNewExpense />} />
 
     {/* Expense Type */}
-    <Route path="/expensetypes" element={<expense.Expense />} />
+    <Route path="/expensetypes" element={<Expense.Expense />} />
     <Route
       path="/expensetypes/new"
-      element={<expense.AddNewExpenseType />}
+      element={<Expense.AddNewExpenseType />}
     />
     <Route
       path="/expensetypes/edit/:id"
-      element={<expense.AddNewExpenseType />}
+      element={<Expense.AddNewExpenseType />}
     />
 
     {/* Product */}
-    <Route path="/products" element={<product.Products />} />
-    <Route path="/products/new" element={<product.AddNewProduct />} />
-    <Route path="/products/edit/:id" element={<product.AddNewProduct />} />
+    <Route path="/products" element={<Product.Products />} />
+    <Route path="/products/new" element={<Product.AddNewProduct />} />
+    <Route path="/products/edit/:id" element={<Product.AddNewProduct />} />
 
     {/* Product Type */}
-    <Route path="/producttypes" element={<product.Products />} />
+    <Route path="/producttypes" element={<Product.Products />} />
     <Route
       path="/producttypes/new"
-      element={<product.AddNewProductType />}
+      element={<Product.AddNewProductType />}
     />
     <Route
       path="/producttypes/edit/:id"
-      element={<product.AddNewProductType />}
+      element={<Product.AddNewProductType />}
     />
 
     {/* Catch : Not found */}
